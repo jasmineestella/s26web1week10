@@ -1,0 +1,136 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/**********************************
+        Main styles
+**********************************/        
+.container{
+    background: rgb(234, 201, 255);
+    max-width: 960px; /*max-width ensures that the site won't expand forever*/
+    margin:0 auto; /*margin auto on the left and right centers the object on the screen*/
+}
+header{
+    background: rgb(196, 215, 150);
+    height: 300px;
+    display: flex; /*can be used to center things vertically and horizontally*/
+    justify-content: center; /*justify-content affects the main flex axis*/
+    align-items: center; /*align-items affects the cross axis*/
+}
+h1{
+    font-size: 36px;
+    font-weight: bold;
+    color:white;
+}
+/* this targets only the anchor (a) tags in the nav and not any other link on your page*/
+nav a{
+    display: block; /*so we can give them width height and make them look like buttons*/
+    background: rgb(207, 149, 255);
+    border-top: 1px solid rgb(172, 70, 255);
+    border-bottom: 1px solid rgb(172, 70, 255);
+    padding: 1em 0; /*two values means top-bottom, left-right*/
+    text-align: center;
+    text-decoration: none;
+}
+/* a hover and an active state: hover for a cursor and active for a touch screen */
+nav a:hover, nav a:active{
+    background: rgb(172, 70, 255);
+}
+main{
+    display: flex; 
+    /*you can tell the content to wrap if it runs out of space*/
+    flex-wrap: wrap;
+}
+main div{
+    border:1px solid white;
+    background-color: rgb(196, 215, 150);
+    /* flexbox can still have margin and padding on items*/
+    margin:1em;
+    padding: 1em;
+    flex-grow: 1; /* flex-grow and flex-shrink always grow and shrink relative to the content inside the object*/
+    flex-basis: 0; /* this tells the flex-grow to ignore the object's content*/
+}
+main div:nth-child(2){
+    flex-grow:2;
+}
+/**********************************
+        Media Queries
+**********************************/ 
+
+/* set up a breakpoint to transition to a more horizontal layout */
+@media screen and ( min-width:760px){
+    /*these styles will only apply when the screen is 760px or wider*/
+    nav ul{
+        /*use display:flex to make the li sit next to each other
+        you have to put display:flex on the container or the parent of 
+        the things you want to affect*/
+        display: flex;
+
+        /*justify-content controls how the objects flew or how they display*/
+        justify-content: space-around;
+    }
+    /*you can also control properties on the flex items (the children)
+    including how they grow or shrink into the space*/
+    nav li{
+        flex-grow: 1; /*makes them all grow to be the same size*/
+    }
+    footer{
+        display: flex;
+    }
+    footer div{
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        flex-grow: 1;
+    }
+    footer div.footnav{
+        /*use flex-grow to make the secondary navigation take up more space and move around from it's original order*/
+        flex-grow: 2; /* flex-grow is a ratio based on all objects since the others all have a flex-grow of 1 this takes up twice as much space*/
+        order:2; /* all objects have a default order of 1. setting them higher will move the objects toward the end of the flex*/
+
+    }
+}
